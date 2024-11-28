@@ -1,0 +1,181 @@
+version: '3.4'
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    ports:
+      - 9000:9000
+    volumes:
+        - portainer-data:/data
+        - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    depends_on:
+      - otel-collector
+      - apm-server
+      - elasticsearch
+      - kibana
+    networks:
+      - observabilidade
+  
+  apm-server:
+    container_name: apm-server
+    image: docker.elastic.co/apm/apm-server:7.17.11
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+      - kibana
+    cap_add: ["CHOWN", "DAC_OVERRIDE", "SETGID", "SETUID"]
+    cap_drop: ["ALL"]
+    ports:
+      - 8200:8200
+    networks:
+      - observabilidade
+    command: >
+       apm-server -e
+         -E apm-server.rum.enabled=true
+         -E setup.kibana.host=kibana:5601
+         -E setup.template.settings.index.number_of_replicas=0
+         -E apm-server.kibana.enabled=true
+         -E apm-server.kibana.host=kibana:5601
+         -E output.elasticsearch.hosts=["elasticsearch:9200"]
+    healthcheck:
+      interval: 10s
+      retries: 12
+      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:8200/
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.11
+    ambiente:
+      - bootstrap.memory_lock=true
+      - cluster.name=docker-cluster
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-XX:UseAVX=2 -Xms1g -Xmx1g
+    deploy:
+       resources:
+          limits:
+            memory: 3g
+
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    restart: unless-stopped
+    ports:
+      - 9200:9200
+    networks:
+      - observabilidade
+    healthcheck:
+      interval: 20s
+      retries: 10
+      test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.17.11
+    depends_on:
+      - elasticsearch
+    ambiente:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    restart: unless-stopped
+    ports:
+      - 5601:5601
+    networks:
+      - observabilidade
+    healthcheck:
+      interval: 10s
+      retries: 20
+      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:5601/api/status  
+  # OpenTelemetry Collector
+  otel-collector:
+    container_name: otel-collector
+    image: otel/opentelemetry-collector-contrib:0.94.0
+    volumes:
+      - ./otel-collector/otel-config.yaml:/etc/otel/config.yaml
+      - ./log:/log/otel
+    command: --config /etc/otel/config.yaml
+    ambiente:
+      JAEGER_ENDPOINT: "jaeger:4317"
+      PROMETHEUS_ENDPOINT: "0.0.0.0:8889"
+    restart: unless-stopped
+    ports:
+      - "8889:8889"   # Prometheus metrics exporter (scrape endpoint)
+      - "13133:13133" # health_check extension
+      - "55679:55679" # ZPages extension
+      - "4318:4318"   # OTLP Receiver protocol HTTP
+      - "4317:4317"   # OTLP Receiver protocol gRPC
+    networks:
+      - observabilidade
+      
+    depends_on:
+      - jaeger
+      - prometheus
+
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    ambiente:
+      COLLECTOR_OTLP_ENABLED: "true"
+    restart: unless-stopped
+    ports:
+      - "16686:16686" # Jaeger Web UI
+      - "5775:5775"   # accept zipkin.thrift over compact thrift protocol
+      - "6831:6831"   # accept jaeger.thrift over compact thrift protocol
+      - "6832:6832"   # accept jaeger.thrift over binary thrift protocol
+      - "5778:5778"   # serve configs
+      - "14268:14268" # accept jaeger.thrift directly from clients
+    deploy:
+       resources:
+          limits:
+            memory: 3g
+    networks:
+      - observabilidade      
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - observabilidade      
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    volumes:
+      - ./grafana/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    ambiente:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
+    ports:
+      - "3000:3000"
+    networks:
+      - observabilidade      
+
+  redis:
+    container_name: redis
+    image: redis:7.0.4-alpine
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/var/lib/redis/data
+    networks:
+      - redis
+      
+networks:
+  observabilidade:
+    driver: bridge
+  redis:
+    driver: bridge    
+
+volumes:
+  redis-data:
+  portainer-data:
+  esdata:
+    driver: local

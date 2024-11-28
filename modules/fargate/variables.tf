@@ -1,0 +1,15 @@
+variable "ambiente" {}
+variable "projeto" {}
+variable "regiao" {}
+variable "autoscale_min" {}
+variable "autoscale_max" {}
+variable "aws_vpc_id" {}
+variable "public-subnet_ids" {}
+variable "account_id" {}
+variable "prefix-list-id" {}
+variable "today" {}
+variable "host_observabilidade" {}
+variable "aws_secretsmanager_secret_settings_arn" {}
+variable "sg-lb-id" {}
+variable "sg-ecs-service-id" {}
+variable "ecstagresourcepolicyarn" {}
