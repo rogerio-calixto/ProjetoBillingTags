@@ -10,6 +10,10 @@ sleep 5
 sudo ./aws/install
 rm -f awscliv2.zip
 sudo apt install apt-transport-https curl gnupg-agent ca-certificates software-properties-common -y
+sudo mkdir website
+cd website
+aws s3 cp s3://projetobillingtags-bucket/website/ . --recursive
+
 sleep 10
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
