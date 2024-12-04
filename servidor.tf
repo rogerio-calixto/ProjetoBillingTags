@@ -5,10 +5,10 @@ resource "aws_security_group" "sg_servidor" {
   vpc_id      = module.vpc.aws_vpc_id
 
   ingress {
-    description     = "HTTP"
-    from_port       = 8080
-    to_port         = 8080
-    protocol        = "tcp"
+    description = "HTTP"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -33,13 +33,14 @@ data "template_file" "userdata_pbt" {
 module "servidor" {
   source                  = "git::https://github.com/rogerio-calixto/TemplateInstance.git"
   profile                 = local.profile
+  assume_role_arn         = var.assume_role_arn
   regiao                  = var.regiao
   projeto                 = local.projeto
   ambiente                = var.ambiente
   criado_por              = local.criado_por
   ami                     = lookup(var.amis, var.regiao)
   instance_type           = var.instance_type
-  keypair_name            = "pbt_keypair"
+  keypair_name            = var.keypair_projetobillingtags
   vpc_id                  = module.vpc.aws_vpc_id
   subnet_id               = module.vpc.subnet_publica_ids[0]
   sg_id                   = aws_security_group.sg_servidor.id

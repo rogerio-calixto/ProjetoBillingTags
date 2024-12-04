@@ -3,7 +3,7 @@ resource "aws_cloudwatch_log_group" "log_group" {
   name  = "/ecs/${var.projeto}-td-${var.services_list[count.index].name}-${var.ambiente}"
 
   tags = {
-    projeto     = var.projeto
+    projeto  = var.projeto
     ambiente = var.ambiente
   }
 }

@@ -1,17 +1,17 @@
 module "base" {
   source                  = "./base"
-  ambiente             = var.ambiente
+  ambiente                = var.ambiente
   projeto                 = var.projeto
   aws_vpc_id              = var.aws_vpc_id
   prefix-list-id          = var.prefix-list-id
   account_id              = var.account_id
-  regiao              = var.regiao
+  regiao                  = var.regiao
   ecstagresourcepolicyarn = var.ecstagresourcepolicyarn
 }
 module "services" {
   source        = "./services"
-  regiao    = var.regiao
-  ambiente   = var.ambiente
+  regiao        = var.regiao
+  ambiente      = var.ambiente
   projeto       = var.projeto
   autoscale_min = var.autoscale_min
   autoscale_max = var.autoscale_max

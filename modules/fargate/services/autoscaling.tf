@@ -14,7 +14,7 @@ resource "aws_appautoscaling_target" "ecs-target-services" {
   # }
 
   tags = {
-    projeto     = var.projeto
+    projeto  = var.projeto
     ambiente = var.ambiente
   }
 

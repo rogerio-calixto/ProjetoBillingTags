@@ -1,15 +1,17 @@
 variable "ambiente" {
   type        = string
-  description = ""
+  description = "ambiente para o recurso"
+  default     = "dev"
 }
 
 variable "regiao" {
   type        = string
-  description = ""
+  description = "regiao onde sera criado o recurso"
+  default     = "us-east-1"
 }
 
 variable "regiao_names" {
-  description = "Region names."
+  description = "regioes disponíveis"
   default = {
     us-east-1 = "virginia"
     us-east-2 = "ohio"
@@ -18,18 +20,8 @@ variable "regiao_names" {
   }
 }
 
-variable "autoscale_min" {
-  default     = "1"
-  description = "Minimum autoscale"
-}
-
-variable "autoscale_max" {
-  default     = "4"
-  description = "Maximum autoscale"
-}
-
 variable "amis" {
-  description = "Images avaiables."
+  description = "imagens disponíveis"
   default = {
     us-east-1 = "ami-0a6b2839d44d781b2"
     us-east-2 = "ami-0ada6d94f396377f2"
@@ -38,17 +30,33 @@ variable "amis" {
   }
 }
 
-variable "key_pair_pbt" {
-  default     = ""
-  description = "key pair"
+variable "autoscale_min" {
+  default     = "1"
+  description = "mínimo de servidores levantados pelo autoscale"
+}
+
+variable "autoscale_max" {
+  default     = "4"
+  description = "máximo de servidores levantados por autoscale"
+}
+
+variable "keypair_projetobillingtags" {
+  default     = "projetobillingtags"
+  description = "par de chaves para acesso de instâncias"
 }
 
 variable "instance_type" {
   default     = "t2.micro"
-  description = "instance type"
+  description = "tipo da instância"
 }
 
 variable "root-block-device-size" {
-  type    = any
-  default = 10
+  type        = any
+  description = "tamanho do volume EBS"
+  default     = 10
+}
+
+variable "assume_role_arn" {
+  type    = string
+  default = ""
 }
