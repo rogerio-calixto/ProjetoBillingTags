@@ -5,17 +5,17 @@ locals {
   criado_por = "terraform"
   profile    = ""
   account_id = data.aws_caller_identity.current.account_id
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/24"
   subnet_privada_config = [
     {
-      cidr_block     = "10.0.1.0/24"
+      cidr_block     = "10.0.1.0/28"
       available_zone = "${var.regiao}a"
     }
   ]
 
   subnet_publica_config = [
     {
-      cidr_block     = "10.0.8.0/24"
+      cidr_block     = "10.0.8.0/28"
       available_zone = "${var.regiao}a"
     }
   ]
