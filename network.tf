@@ -1,11 +1,10 @@
 module "vpc" {
   source                = "git::https://github.com/rogerio-calixto/TemplateNetwork.git"
   profile               = local.profile
-  assume_role_arn       = var.assume_role_arn
   regiao                = var.regiao
   projeto               = local.projeto
   ambiente              = var.ambiente
-  criado_por            = local.criado_por
+  tipo_criacao          = local.tipo_criacao
   cidr_block            = local.cidr_block
   subnet_privada_config = local.subnet_privada_config
   subnet_publica_config = local.subnet_publica_config

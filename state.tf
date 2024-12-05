@@ -1,7 +1,9 @@
 terraform {
   backend "s3" {
-    bucket  = "projetobillingtags-bucket"
-    encrypt = "true"
+    profile = "terraform-user"
     region  = "us-east-1"
+    encrypt = "true"
+    bucket  = "projetobillingtags-bucket"
+    key     = "terraform/state/tf_projetobillingtags.tfstate"
   }
 }

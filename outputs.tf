@@ -68,9 +68,9 @@ output "servidor1_id" {
   value = module.servidor.ec2_instance_id
 }
 output "ec2_private_ip" {
-  value = module.servidor.private_ip
+  value = module.servidor.ec2_private_ip
 }
 
 output "servidor1_ip_publico" {
-  value = module.servidor.public_ip
+  value = module.servidor.ec2_public_ip
 }
