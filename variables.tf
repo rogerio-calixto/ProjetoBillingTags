@@ -23,10 +23,10 @@ variable "regiao_names" {
 variable "amis" {
   description = "imagens disponíveis"
   default = {
-    us-east-1 = "ami-0a6b2839d44d781b2"
-    us-east-2 = "ami-0ada6d94f396377f2"
-    us-west-1 = "ami-0f4feb99425e13b50"
-    us-west-2 = "ami-0530ca8899fac469f"
+    us-east-1 = "ami-0e2c8caa4b6378d8c" 
+    us-east-2 = "ami-036841078a4b68e14"
+    us-west-1 = "ami-0657605d763ac72a8"
+    us-west-2 = "ami-05d38da78ce859165"
   }
 }
 

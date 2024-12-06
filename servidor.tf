@@ -5,8 +5,8 @@ resource "aws_security_group" "sg_servidor" {
 
   ingress {
     description = "HTTP"
-    from_port   = 8080
-    to_port     = 8080
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -27,9 +27,6 @@ resource "aws_security_group" "sg_servidor" {
 
 data "template_file" "userdata_pbt" {
   template = file("scripts/install_servidor.sh")
-  vars = {
-    ambiente = var.ambiente
-  }
 }
 
 module "servidor" {
