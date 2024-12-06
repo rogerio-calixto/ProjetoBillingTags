@@ -11,6 +11,14 @@ resource "aws_security_group" "sg_servidor" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -47,4 +55,5 @@ module "servidor" {
   instance_profile_name   = aws_iam_instance_profile.ec2_profile.name
   disable_api_termination = true
   root_block_device_size  = var.root-block-device-size
+  associate_public_ip     = true
 }
