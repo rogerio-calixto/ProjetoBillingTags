@@ -1,7 +1,5 @@
 @echo off
 cls
-call aws-clean-creds_title.bat
-echo .
 
 setx AWS_ACCESS_KEY_ID ""
 setx AWS_SECRET_ACCESS_KEY ""
