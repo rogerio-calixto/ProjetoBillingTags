@@ -1,6 +1,7 @@
 module "vpc" {
   source                = "git::https://github.com/rogerio-calixto/TemplateNetwork.git"
   profile               = local.profile
+  arn_assumerole        = var.arn_assumerole
   regiao                = var.regiao
   projeto               = local.projeto
   ambiente              = var.ambiente

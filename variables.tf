@@ -56,7 +56,6 @@ variable "root-block-device-size" {
   default     = 10
 }
 
-variable "assume_role_arn" {
+variable "arn_assumerole" {
   type    = string
-  default = ""
 }

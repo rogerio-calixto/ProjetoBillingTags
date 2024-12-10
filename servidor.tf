@@ -40,6 +40,7 @@ data "template_file" "userdata_pbt" {
 module "servidor" {
   source                  = "git::https://github.com/rogerio-calixto/TemplateInstance.git"
   profile                 = local.profile
+  arn_assumerole          = var.arn_assumerole
   regiao                  = var.regiao
   projeto                 = local.projeto
   ambiente                = var.ambiente

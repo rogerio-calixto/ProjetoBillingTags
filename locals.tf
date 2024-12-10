@@ -3,7 +3,7 @@ locals {
   now        = timestamp()
   projeto    = "billing_tags"
   tipo_criacao = "terraform"
-  profile    = "terraform-user"
+  profile    = "tf-user"
   account_id = data.aws_caller_identity.current.account_id
   cidr_block = "10.0.0.0/24"
   subnet_privada_config = [

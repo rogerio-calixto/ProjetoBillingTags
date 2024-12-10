@@ -1,3 +1,6 @@
+# Conf files
+*.conf
+
 # Log files
 *.log
 
@@ -29,6 +32,9 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# Variables
+*.tfvars
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 *tfplan*
