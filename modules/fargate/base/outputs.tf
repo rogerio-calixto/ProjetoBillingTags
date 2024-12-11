@@ -1,19 +1,19 @@
-output "aws_iam_role_ecs_task_role_arn" {
-  value = aws_iam_role.ecs_task_role.arn
+output "aws-iam-role-ecs-task-role-arn" {
+  value = aws_iam_role.ecs-task-role.arn
 }
 
-output "aws_iam_role_ecs_task_execution_role_arn" {
-  value = aws_iam_role.ecs_task_execution_role.arn
+output "aws-iam-role-ecs-task-execution-role-arn" {
+  value = aws_iam_role.ecs-task-execution-role.arn
 }
 
-output "aws_iam_role_ecs_task_execution_role_id" {
-  value = aws_iam_role.ecs_task_execution_role.id
+output "aws-iam-role-ecs-task-execution-role-id" {
+  value = aws_iam_role.ecs-task-execution-role.id
 }
 
-output "aws_ecs_cluster_ecs-cluster_id" {
+output "aws-ecs-cluster-ecs-cluster-id" {
   value = aws_ecs_cluster.ecs-cluster.id
 }
 
-output "aws_ecs_cluster_ecs-cluster_name" {
+output "aws-ecs-cluster-ecs-cluster-name" {
   value = aws_ecs_cluster.ecs-cluster.name
 }

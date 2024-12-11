@@ -2,7 +2,7 @@ output "lb-services-arns" {
   value = aws_alb.lb-services.*.arn
 }
 
-output "lb-services-dns_names" {
+output "lb-services-dns-names" {
   value = aws_alb.lb-services.*.dns_name
 }
 
@@ -18,6 +18,6 @@ output "ecs-target-services" {
   value = aws_appautoscaling_target.ecs-target-services
 }
 
-output "services_list-names" {
-  value = var.services_list.*.name
+output "services-list-names" {
+  value = var.services-list.*.name
 }

@@ -36,7 +36,7 @@ module "vpc" {
 # }
 
 # resource "aws_route_table" "rt_privada" {
-#   vpc_id = module.vpc.aws_vpc_id
+#   vpc_id = module.vpc.aws-vpc-id
 
 #   route {
 #     cidr_block = "0.0.0.0/0"

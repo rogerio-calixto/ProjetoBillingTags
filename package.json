@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clear": "cls",
-	  "init-branch": "terraform init -reconfigure",
+	  "init-branch": "terraform init -backend-config=\"backend.conf\" -reconfigure",
     "format": "terraform fmt -recursive",
     "update_templates": "terraform get -update",
     "validate": "terraform validate",

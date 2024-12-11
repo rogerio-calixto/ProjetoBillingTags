@@ -23,19 +23,19 @@ variable "regiao_names" {
 variable "amis" {
   description = "imagens disponíveis"
   default = {
-    us-east-1 = "ami-0e2c8caa4b6378d8c" 
+    us-east-1 = "ami-0e2c8caa4b6378d8c"
     us-east-2 = "ami-036841078a4b68e14"
     us-west-1 = "ami-0657605d763ac72a8"
     us-west-2 = "ami-05d38da78ce859165"
   }
 }
 
-variable "autoscale_min" {
+variable "autoscale-min" {
   default     = "1"
   description = "mínimo de servidores levantados pelo autoscale"
 }
 
-variable "autoscale_max" {
+variable "autoscale-max" {
   default     = "4"
   description = "máximo de servidores levantados por autoscale"
 }
@@ -57,5 +57,5 @@ variable "root-block-device-size" {
 }
 
 variable "arn_assumerole" {
-  type    = string
+  type = string
 }

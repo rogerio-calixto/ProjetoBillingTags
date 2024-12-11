@@ -2,15 +2,15 @@ resource "aws_ecs_cluster" "ecs-cluster" {
   name = "${var.projeto}-cluster-${var.ambiente}"
 
   tags = {
-    Name      = "${var.projeto}-cluster-${var.ambiente}"
-    projeto   = var.projeto
-    ambiente  = var.ambiente
+    Name      = "cluster-${var.projeto}-${var.ambiente}"
+    Projeto   = var.projeto
+    Ambiente  = var.ambiente
     Automacao = "enabled"
   }
 
   setting {
     name  = "containerInsights"
-    value = "enabled"
+    value = "disabled"
   }
 
   lifecycle {

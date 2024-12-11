@@ -46,3 +46,23 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   name = "Servidor_Role_Profile_${local.projeto}-${var.ambiente}"
   role = aws_iam_role.servidor_role.name
 }
+
+# resource "aws_iam_policy" "ecstagresource-policy" {
+#   name        = "ecstagresource-policy"
+#   path        = "/"
+#   description = "permissoes para tags em ecs"
+
+#   policy = jsonencode({
+#     Version = "2012-10-17",
+#     Statement = [
+#       {
+#         "Sid" : "VisualEditor0",
+#         "Effect" : "Allow",
+#         "Action" : [
+#           "ecs:TagResource"
+#         ],
+#         "Resource" : "*",
+#       }
+#     ]
+#   })
+# }

@@ -1,5 +1,5 @@
-resource "aws_iam_role" "ecs_task_role" {
-  name = "${var.projeto}-ecsTaskRole-${var.ambiente}"
+resource "aws_iam_role" "ecs-task-role" {
+  name = "ecsTaskRole-${var.projeto}-${var.ambiente}"
 
   assume_role_policy = <<EOF
 {
@@ -18,8 +18,8 @@ resource "aws_iam_role" "ecs_task_role" {
 EOF
 }
 
-resource "aws_iam_policy" "policy_ssm" {
-  name = "${var.projeto}-policy-ssm-${var.ambiente}"
+resource "aws_iam_policy" "policy-ssm" {
+  name = "policy-ssm-${var.projeto}-${var.ambiente}"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -38,12 +38,7 @@ resource "aws_iam_policy" "policy_ssm" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "ecs_task_role_policy" {
-  role       = aws_iam_role.ecs_task_role.name
-  policy_arn = aws_iam_policy.policy_ssm.arn
+resource "aws_iam_role_policy_attachment" "ecs-task-role_policy" {
+  role       = aws_iam_role.ecs-task-role.name
+  policy_arn = aws_iam_policy.policy-ssm.arn
 }
-
-# resource "aws_iam_role_policy_attachment" "ecs_secrets_task_role_policy" {
-#   role       = aws_iam_role.ecs_task_role.name
-#   policy_arn = aws_iam_policy.policy_secrets.arn
-# }

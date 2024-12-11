@@ -1,10 +1,10 @@
-data "aws_default_tags" "current" {}
+# data "aws_default_tags" "current" {}
 
 resource "aws_appautoscaling_target" "ecs-target-services" {
-  count              = length(var.services_list)
-  min_capacity       = var.autoscale_min
-  max_capacity       = var.autoscale_max
-  resource_id        = "service/${var.aws_ecs_cluster_ecs-cluster_name}/${aws_ecs_service.ecs-services.*.name[count.index]}"
+  count              = length(var.services-list)
+  min_capacity       = var.autoscale-min
+  max_capacity       = var.autoscale-max
+  resource_id        = "service/${var.aws-ecs-cluster-ecs-cluster-name}/${aws_ecs_service.ecs-services.*.name[count.index]}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 
@@ -14,8 +14,8 @@ resource "aws_appautoscaling_target" "ecs-target-services" {
   # }
 
   tags = {
-    projeto  = var.projeto
-    ambiente = var.ambiente
+    Projeto  = var.projeto
+    Ambiente = var.ambiente
   }
 
   lifecycle {
@@ -27,8 +27,8 @@ resource "aws_appautoscaling_target" "ecs-target-services" {
   ]
 }
 
-resource "aws_appautoscaling_policy" "ecs_policy_cpu-services" {
-  count              = length(var.services_list)
+resource "aws_appautoscaling_policy" "ecs-policy-cpu-services" {
+  count              = length(var.services-list)
   name               = "cpu-70-autoscaling"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.ecs-target-services.*.resource_id[count.index]

@@ -2,8 +2,8 @@ output "lb-services-arns" {
   value = module.services.lb-services-arns
 }
 
-output "lb-services-dns_names" {
-  value = module.services.lb-services-dns_names
+output "lb-services-dns-names" {
+  value = module.services.lb-services-dns-names
 }
 
 output "lb-tg-services-arns" {
@@ -18,10 +18,10 @@ output "ecs-target-services" {
   value = module.services.ecs-target-services
 }
 
-output "services_list-names" {
-  value = module.services.services_list-names
+output "services-list-names" {
+  value = module.services.services-list-names
 }
 
-output "ecs_task_execution_role_arn" {
-  value = module.base.aws_iam_role_ecs_task_execution_role_arn
+output "ecs-task-execution-role_arn" {
+  value = module.base.aws-iam-role-ecs-task-execution-role-arn
 }

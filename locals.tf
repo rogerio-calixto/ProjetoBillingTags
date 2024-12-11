@@ -1,11 +1,11 @@
 data "aws_caller_identity" "current" {}
 locals {
-  now        = timestamp()
-  projeto    = "billing_tags"
+  now          = timestamp()
+  projeto      = "billing-tags"
   tipo_criacao = "terraform"
-  profile    = "tf-user"
-  account_id = data.aws_caller_identity.current.account_id
-  cidr_block = "10.0.0.0/24"
+  profile      = "tf-user"
+  account-id   = data.aws_caller_identity.current.account_id
+  cidr_block   = "10.0.0.0/24"
   subnet_privada_config = [
     {
       cidr_block     = "10.0.0.0/26"
@@ -17,7 +17,11 @@ locals {
     {
       cidr_block     = "10.0.0.64/26"
       available_zone = "${var.regiao}a"
+    },
+    {
+      cidr_block     = "10.0.0.128/26"
+      available_zone = "${var.regiao}b"
     }
   ]
-  ecstagresourcepolicyarn = "arn:aws:iam::791659331772:policy/pbt-ecstagresource-policy"
+  aws-ecr-repository-name = "projetobillingtags"
 } 
