@@ -28,8 +28,16 @@ variable "services-list" {
   description = "List of all services"
   default = [
     {
-      name      = "website"
+      name      = "Car-Zone"
       ecr-image = "365857435132.dkr.ecr.us-east-1.amazonaws.com/projetobillingtags:img_fargate_v1"
+    },
+    {
+      name      = "Bistro"
+      ecr-image = "365857435132.dkr.ecr.us-east-1.amazonaws.com/projetobillingtags:img_fargate_v2"
+    },
+    {
+      name      = "GreenCorp"
+      ecr-image = "365857435132.dkr.ecr.us-east-1.amazonaws.com/projetobillingtags:img_fargate_v5"
     }
   ]
 }
