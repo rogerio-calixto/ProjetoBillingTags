@@ -8,14 +8,10 @@ resource "aws_appautoscaling_target" "ecs-target-services" {
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 
-  # for_each = data.aws_default_tags.current.tags
-  # tags = {
-  #   "${each.key}" = "${each.value}"
-  # }
-
   tags = {
-    Projeto  = var.projeto
-    Ambiente = var.ambiente
+    Servico = "${aws_ecs_service.ecs-services.*.name[count.index]}"
+    # Projeto  = var.projeto
+    # Ambiente = var.ambiente
   }
 
   lifecycle {
