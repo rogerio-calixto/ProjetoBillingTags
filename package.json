@@ -1,7 +1,7 @@
 {
   "name": "terraformfutura",
   "version": "1.0.0",
-  "description": "Infra Estrutura Fargate para MicroServices da Futura Sistemas",
+  "description": "Infra Estrutura Fargate para Billing Tags",
   "main": "index.js",
   "scripts": {
     "clear": "cls",
