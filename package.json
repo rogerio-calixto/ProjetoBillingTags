@@ -1,5 +1,5 @@
 {
-  "name": "terraformfutura",
+  "name": "projeto_terraform",
   "version": "1.0.0",
   "description": "Infra Estrutura Fargate para Billing Tags",
   "main": "index.js",
@@ -12,23 +12,13 @@
     "plan": "terraform plan -out=\"tfplan.out\"",
     "apply": "terraform apply \"tfplan.out\"",
     "infra_costs": "infracost breakdown --path=. --show-skipped --terraform-var-file prd.tfvars",
-    "output": "terraform output -json",
-    "RemoveFuturaSecretsDEV": "cd commands && remove-futura-secrets.bat futura-sm-settings-dev us-east-2",
-    "RemoveFuturaSecretsHML": "cd commands && remove-futura-secrets.bat futura-sm-settings-hml us-west-2",
-    "RemoveFuturaSecretsPRD": "cd commands && remove-futura-secrets.bat futura-sm-settings-prd us-east-1",
-    "InspectFuturaEcsTaskDEV": "cd commands && inspect-ecs-task.bat us-east-2 futura-cluster-dev futura-monolith-dev 32a2232023e848a7b8601a0804dc3711",
-    "InspectFuturaEcsTaskHML": "cd commands && inspect-ecs-task.bat us-west-2 futura-cluster-hml futura-monolith-hml 977ee0a258b44a0bae6033b7bf96d136",
-    "InspectFuturaEcsTaskPRD": "cd commands && inspect-ecs-task.bat us-east-1 futura-cluster-prd futura-monolith-prd 271ad0c66cbd43dc90cb12351e5b3ebf",
-    "InspectJenkinsEcsTaskHML": "cd commands && inspect-ecs-task.bat us-west-2 jenkins-cluster-hml jenkins-hml edc0597493214196b505c3a427b233bf",
-    "terraform_remove_automacao": ".\\commands\\terraform_remove.sh C:\\Fontes\\futura_plataforma\\terraform_imports\\terraformfutura\\terraformfuturaautomacao remove_prd.txt output_remove_prd.txt",
-    "terraform_remove_seguranca": ".\\commands\\terraform_remove.sh C:\\Fontes\\futura_plataforma\\terraform_imports\\terraformfutura\\terraformfuturaseguranca remove_prd.txt output_remove_prd.txt",
-    "terraform_remove_bancodedados": ".\\commands\\terraform_remove.sh C:\\Fontes\\futura_plataforma\\terraform_imports\\terraformfutura\\terraformfuturabancodedados remove_prd.txt output_remove_prd.txt"
+    "output": "terraform output -json"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/Calixto_Futura/terraformfutura.git"
+    "url": ""
   },
   "author": "Rogerio Calixto",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/Calixto_Futura/terraformfutura#readme"
+  "homepage": ""
 }
