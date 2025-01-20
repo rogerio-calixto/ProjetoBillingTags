@@ -7,6 +7,10 @@ resource "aws_alb" "lb-services" {
   enable_deletion_protection = false
   subnets                    = var.public-subnet-ids
   idle_timeout               = var.lb-idle-timeout
+
+  # lifecycle {
+  #   ignore_changes = [tags]
+  # }
 }
 
 resource "aws_alb_target_group" "lb-tg-services" {
