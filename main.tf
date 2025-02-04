@@ -7,9 +7,9 @@ provider "aws" {
 
   # default_tags {
   #   tags = {
-  #     Ambiente     = "Ambiente_Demonstracao"
-  #     Projeto      = "Projeto_Demonstracao"
-  #     Tipo_Criacao = "Tipo_Demonstracao"
+  #     Tipo_Criacao = local.tipo_criacao
+  #     Projeto      = local.projeto
+  #     Ambiente     = var.ambiente
   #   }
   # }
 }
