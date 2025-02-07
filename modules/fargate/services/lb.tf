@@ -8,9 +8,9 @@ resource "aws_alb" "lb-services" {
   subnets                    = var.public-subnet-ids
   idle_timeout               = var.lb-idle-timeout
 
-  # lifecycle {
-  #   ignore_changes = [tags]
-  # }
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "aws_alb_target_group" "lb-tg-services" {

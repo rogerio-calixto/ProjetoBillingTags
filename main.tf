@@ -5,11 +5,11 @@ provider "aws" {
     role_arn = var.arn_assumerole
   }
 
-  # default_tags {
-  #   tags = {
-  #     Tipo_Criacao = local.tipo_criacao
-  #     Projeto      = local.projeto
-  #     Ambiente     = var.ambiente
-  #   }
-  # }
+  default_tags {
+    tags = {
+      Tipo_Criacao = local.tipo_criacao
+      Prj      = local.projeto
+      Env     = var.ambiente
+    }
+  }
 }

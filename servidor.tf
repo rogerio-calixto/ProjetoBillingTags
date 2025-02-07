@@ -20,8 +20,8 @@ resource "aws_security_group" "sg_servidor" {
 
   tags = {
     Name     = "sg_servidor_${local.projeto}_${var.ambiente}"
-    projeto  = local.projeto
-    ambiente = var.ambiente
+    Prj  = local.projeto
+    Env = var.ambiente
   }
 }
 

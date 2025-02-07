@@ -10,7 +10,7 @@ resource "aws_ecs_service" "ecs-services" {
   scheduling_strategy                = "REPLICA"
   enable_execute_command             = true
   health_check_grace_period_seconds  = 180
-  # propagate_tags                     = "SERVICE"
+  propagate_tags                     = "SERVICE"
 
   network_configuration {
     security_groups  = [var.aws-security-group-sg-ecs-service-id]
@@ -25,7 +25,7 @@ resource "aws_ecs_service" "ecs-services" {
   }
 
   lifecycle {
-    ignore_changes = [task_definition, desired_count]
+    ignore_changes = [task_definition, desired_count, tags]
   }
 
   depends_on = [

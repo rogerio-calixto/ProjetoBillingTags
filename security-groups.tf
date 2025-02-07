@@ -19,8 +19,8 @@ resource "aws_security_group" "sg-lb" {
 
   tags = {
     Name     = "sg-lb-${local.projeto}-${var.ambiente}"
-    Projeto  = local.projeto
-    Ambiente = var.ambiente
+    Prj  = local.projeto
+    Env = var.ambiente
   }
 }
 
@@ -61,8 +61,8 @@ resource "aws_security_group" "sg-ecs-service" {
 
   tags = {
     Name     = "sg-ecs-service-${local.projeto}-${var.ambiente}"
-    Projeto  = local.projeto
-    Ambiente = var.ambiente
+    Prj  = local.projeto
+    Env = var.ambiente
   }
 
   depends_on = [aws_security_group.sg-lb]
