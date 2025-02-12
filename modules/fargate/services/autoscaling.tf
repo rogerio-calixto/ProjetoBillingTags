@@ -10,8 +10,8 @@ resource "aws_appautoscaling_target" "ecs-target-services" {
 
   tags = {
     Servico = "${aws_ecs_service.ecs-services.*.name[count.index]}"
-    # Projeto  = var.projeto
-    # Ambiente = var.ambiente
+    Prj  = "demo-tags"
+    Env = "prd"
   }
 
   lifecycle {

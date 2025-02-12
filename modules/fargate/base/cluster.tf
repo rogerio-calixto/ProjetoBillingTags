@@ -4,8 +4,8 @@ resource "aws_ecs_cluster" "ecs-cluster" {
   tags = {
     Name      = "cluster-${var.projeto}-${var.ambiente}"
     Automacao = "enabled"
-    Prj   = var.projeto
-    Env  = var.ambiente
+    Prj   = "suporte-tags"
+    Env  = "admin"
   }
 
   setting {

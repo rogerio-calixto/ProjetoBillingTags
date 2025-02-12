@@ -1,7 +1,7 @@
 variable "ambiente" {
   type        = string
   description = "ambiente para o recurso"
-  default     = "prd"
+  default     = "dev"
 }
 
 variable "regiao" {

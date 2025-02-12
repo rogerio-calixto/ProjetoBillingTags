@@ -8,6 +8,11 @@ resource "aws_alb" "lb-services" {
   subnets                    = var.public-subnet-ids
   idle_timeout               = var.lb-idle-timeout
 
+  tags = {
+    Prj   = "gerenciameno-tags"
+    Env  = "hml"
+  }
+
   lifecycle {
     ignore_changes = [tags]
   }

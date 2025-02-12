@@ -1,7 +1,7 @@
 data "aws_caller_identity" "current" {}
 locals {
   now          = timestamp()
-  projeto      = "demo-tags"
+  projeto      = "suporte-tags"
   tipo_criacao = "terraform"
   profile      = "tf-user"
   account-id   = data.aws_caller_identity.current.account_id
